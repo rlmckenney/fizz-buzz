@@ -1,21 +1,27 @@
 {
   "name": "fizbuzz",
-  "version": "1.0.0",
-  "main": "dist/src/main.js",
+  "version": "1.0.1",
+  "main": "dist/main.js",
   "scripts": {
     "build": "tsc",
-    "dev": "ts-node src/main.ts",
-    "start": "node dist/src/main.js",
-    "test": "node --require ts-node/register --test src/**/*.test.ts",
-    "test:dist": "node --test --experimental-test-coverage dist/src/**/*test.js"
+    "dev:tsc": "tsc --watch --preserveWatchOutput",
+    "dev:node": "node --enable-source-maps --watch dist/main.js",
+    "dev": "pnpm run \"/dev:/\"",
+    "start": "node dist/main.js",
+    "test": "JITI_SOURCE_MAPS=true node --require jiti/register --test src/**/*.test.ts",
+    "test:dist": "node --test --experimental-test-coverage dist/**/*test.js"
   },
-  "keywords": ["FizzBuzz", "TypeScript", "Node.js"],
+  "keywords": [
+    "FizzBuzz",
+    "TypeScript",
+    "Node.js"
+  ],
   "author": "Robert L. McKenney <robert@mckenney.ca>",
   "license": "MIT",
   "description": "This teaching aide compares several FizzBuzz implementations in TypeScript.",
   "devDependencies": {
-    "@types/node": "^20.12.12",
-    "ts-node": "^10.9.2",
+    "@types/node": "^20.14.0",
+    "jiti": "^1.21.0",
     "typescript": "^5.4.5"
   },
   "repository": {
@@ -26,6 +32,7 @@
     "url": "https://github.com/rlmckenney/fizz-buzz/issues"
   },
   "engines": {
-    "node": ">=22.0.0"
-  }
+    "node": ">=20.0.0"
+  },
+  "packageManager": "pnpm@9.1.4+sha512.9df9cf27c91715646c7d675d1c9c8e41f6fce88246f1318c1aa6a1ed1aeb3c4f032fcdf4ba63cc69c4fe6d634279176b5358727d8f2cc1e65b65f43ce2f8bfb0"
 }
