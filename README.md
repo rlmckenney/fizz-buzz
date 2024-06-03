@@ -45,27 +45,36 @@ For small ranges (less than 100), Solution 1 is the winner, but the sub-millisec
 However, Solution 2 outperforms the others by a significant margin for large ranges. This implementation likely benefits from the V8 engine's caching of the function and the reduced overhead of calling a single function with different parameters for each substitution case.
 
 # Usage
-This project assumes you have the latest version (v22.x.x) of [Node.js](https://nodejs.org) installed on your system.
+This project assumes you have version 20.x.x or later of [Node.js](https://nodejs.org) installed on your system. It is also using PNPM as the package manager, which will be installed automatically when you run `npm install` for the first time -- assumes that you have `corepack` enabled. 
+
+## Enable Corepack (if not already enabled)
+[corepack](https://nodejs.org/api/corepack.html) has been bundled with Node.js since Node.js 14.19, but it is not enabled by default. If you haven't enabled it already, run the following command:
+
+```bash
+corepack enable && corepack enable npm
+```
+This enables corepack globally. It is not necessary to enable it for each project.
 
 ## To install dependencies:
 
 ```bash
-npm install
+pnpm install
 ```
 
 ## To run durring development:
 
 ```bash
-npm run dev
+pnpm dev
 ```
+This will run the TypeScript compiler in watch mode, so any changes you make to the source code will be automatically compiled to the dist folder. In paralell, it will run `node dist/main.js` in watch mode to exercise the application on any changes.
 
 ## To run tests:
 
 ```bash
 # A suite of 12 tests will be run for each of the six implementations.
-npm test
+pnpm test
 
-# Example output:
+# Example partial output:
   ✔ transforms 3 to Fizz (0.883667ms)
   ✔ transforms 5 to Buzz (0.055791ms)
   ✔ transforms 7 to Zapp (0.046667ms)
@@ -80,16 +89,16 @@ npm test
   ✔ throws an error if range.end is not a positive number (0.0485ms)
 ```
 
-_NOTE:_ This project uses Node.js's built-in test-runner, which has a few limitations when working with TypeScript source code. If you want to check code coverage, you can run `npm run test:dist` after building the project.
+_NOTE:_ This project uses Node.js's built-in test-runner, which has a few limitations when working with TypeScript source code. If you want to check code coverage, you can run `pnpm test:dist` after building the project.
 
 ## To build:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 ## To run the built version:
 
 ```bash
-npm start
+pnpm start
 ```
